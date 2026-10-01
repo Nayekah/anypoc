@@ -5,5 +5,11 @@
 !.python-version
 !uv.lock
 !src/anypoc/infra/entrypoint.sh
+!projects/
+!projects/*/
+!projects/*/scripts/
 !projects/*/scripts/**
+!oss-projects/
+!oss-projects/*/
+!oss-projects/*/scripts/
 !oss-projects/*/scripts/**
