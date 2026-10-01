@@ -62,13 +62,28 @@ src/dashboard/dashboard/dist/
 
 # Local config overrides
 .envrc
+.env
+.env.*
 .claude/
 .codex
 
+# Runtime credentials
+.caw/
+**/.caw/
+**/auth.json
+**/credentials.json
+
 # AnyPoC specific
 **/.dashboard_config.json
-*output/
 *.traj.html
 *.traj.json
 *.raw.md
-/projects/
+
+# Generated bearer tokens and credential-bearing responses
+output/**/*token*
+output/**/*.jwt
+output/**/*.token
+output/**/rpt.body
+output/**/rpt.claims.json
+output/**/post*auth*
+output/**/*authorize.*
