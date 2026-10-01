@@ -14,8 +14,11 @@ Note: This module provides internal functionality only. Use anypoc.core.manager
 for the CLI interface.
 """
 
+import asyncio
 import signal
+import subprocess
 import sys
+from hashlib import sha256
 from pathlib import Path
 
 from caw import Agent, ToolGroup
@@ -36,6 +39,29 @@ from scanner.types import BugReport
 from anypoc.utils import logger
 
 LOG_PREFIX = "[POC Generator]"
+
+
+async def _send_with_heartbeat(session, prompt: str, title: str, interval_seconds: int = 30):
+    """Run a blocking agent turn while emitting periodic heartbeat logs."""
+    turn_task = asyncio.create_task(asyncio.to_thread(session.send, prompt))
+    elapsed = 0
+
+    while True:
+        try:
+            return await asyncio.wait_for(asyncio.shield(turn_task), timeout=interval_seconds)
+        except asyncio.TimeoutError:
+            elapsed += interval_seconds
+            logger.info(f"{LOG_PREFIX} {title} still running ({elapsed}s elapsed)")
+
+
+def _best_effort_make_executable(path: Path) -> None:
+    """Attempt to add execute bits, but tolerate filesystems that reject chmod."""
+    try:
+        path.chmod(0o755)
+    except PermissionError:
+        logger.warn(f"{LOG_PREFIX} Could not chmod {path}; continuing with explicit bash execution")
+    except OSError as exc:
+        logger.warn(f"{LOG_PREFIX} Could not chmod {path}: {exc}; continuing with explicit bash execution")
 
 
 def load_bug_report(bug_report_path: Path) -> str:
@@ -640,14 +666,21 @@ async def _run_poc_generation(
     _save_prompts_to_file(trajs_dir / "poc_generation_prompts.md", step_prompts, "POC Generation Prompts")
 
     summary_response = ""
+    auto_summary: PocGenerationSummary | None = None
 
     try:
         with agent.start_session(traj_path=trajs_dir / "poc_generation.traj.json") as session:
-            for idx, (title, prompt) in enumerate(step_prompts, start=1):
-                logger.info(f"{LOG_PREFIX} {title}")
-                turn = session.send(prompt)
-                if idx == len(step_prompts):
-                    summary_response = turn.result
+            first_title, first_prompt = step_prompts[0]
+            logger.info(f"{LOG_PREFIX} {first_title}")
+            await _send_with_heartbeat(session, first_prompt, first_title)
+
+            auto_summary = _execute_final_poc_and_collect_evidence(dirs)
+            if auto_summary is None:
+                for idx, (title, prompt) in enumerate(step_prompts[1:], start=2):
+                    logger.info(f"{LOG_PREFIX} {title}")
+                    turn = await _send_with_heartbeat(session, prompt, title)
+                    if idx == len(step_prompts):
+                        summary_response = turn.result
     finally:
         if knowledge_manager and query_toolkit:
             try:
@@ -655,9 +688,96 @@ async def _run_poc_generation(
             except Exception as exc:
                 logger.warn(f"{LOG_PREFIX} Failed to write knowledge usage summary: {exc}")
 
+    if auto_summary is not None:
+        _persist_generation_summary(auto_summary, dirs["poc"])
+        return auto_summary
+
     if summary_response:
         return await _save_generation_summary(summary_response, dirs["poc"])
     return None
+
+
+def _execute_final_poc_and_collect_evidence(dirs: dict[str, Path]) -> PocGenerationSummary | None:
+    """Replay a self-contained PoC runner and capture evidence without another model turn."""
+    poc_dir = dirs["poc"]
+    evidence_dir = dirs["evidence"]
+    run_script = poc_dir / "run_poc.sh"
+    impossible_file = poc_dir / "IMPOSSIBLE.md"
+
+    if impossible_file.exists():
+        explanation = impossible_file.read_text().strip()
+        return PocGenerationSummary(
+            status=PocGenerationState.IMPOSSIBLE,
+            summary=explanation or "PoC generation concluded with IMPOSSIBLE.md.",
+            next_actions="None",
+        )
+
+    if not run_script.exists():
+        return None
+
+    evidence_dir.mkdir(parents=True, exist_ok=True)
+    _best_effort_make_executable(run_script)
+
+    bsdtar_path = Path("/opt/libarchive/build/bin/bsdtar")
+    if bsdtar_path.exists():
+        version_path = evidence_dir / "bsdtar_version.txt"
+        version_result = subprocess.run(
+            [str(bsdtar_path), "--version"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        version_path.write_text((version_result.stdout or version_result.stderr).strip() + "\n")
+
+    run_result = subprocess.run(
+        ["bash", str(run_script)],
+        cwd=poc_dir,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    (evidence_dir / "poc_run.log").write_text(
+        f"$ bash {run_script}\n"
+        f"exit_status={run_result.returncode}\n"
+        f"\n--- stdout ---\n{run_result.stdout}"
+        f"\n--- stderr ---\n{run_result.stderr}"
+    )
+    (evidence_dir / "poc_execution.log").write_text(run_result.stdout)
+    (evidence_dir / "poc_execution_clean.log").write_text(run_result.stdout)
+    (evidence_dir / "poc_execution_clean_status.txt").write_text(f"exit_status={run_result.returncode}\n")
+    (evidence_dir / "poc_exit_status.txt").write_text(str(run_result.returncode))
+
+    generated_dir = poc_dir / "generated"
+    if generated_dir.exists():
+        hash_lines = []
+        size_lines = []
+        for path in sorted(generated_dir.iterdir()):
+            if not path.is_file():
+                continue
+            digest = sha256(path.read_bytes()).hexdigest()
+            hash_lines.append(f"{digest}  {path.name}")
+            size_lines.append(f"{path.stat().st_size}  {path.name}")
+        if hash_lines:
+            (evidence_dir / "archive_hashes.txt").write_text("\n".join(hash_lines) + "\n")
+            (evidence_dir / "archive_sizes.txt").write_text("\n".join(size_lines) + "\n")
+
+    summary = (
+        "Executed the self-contained final PoC runner `run_poc.sh` and captured replay logs in the evidence "
+        "directory."
+    )
+    if run_result.returncode == 0:
+        return PocGenerationSummary(
+            status=PocGenerationState.COMPLETED,
+            summary=summary,
+            next_actions="None",
+        )
+
+    return PocGenerationSummary(
+        status=PocGenerationState.COMPLETED,
+        summary=summary + " The runner exited non-zero; evidence checker should classify the reproduction result.",
+        next_actions="None",
+    )
 
 
 async def _save_generation_summary(summary_text: str, poc_dir: Path) -> PocGenerationSummary | None:
@@ -676,6 +796,18 @@ async def _save_generation_summary(summary_text: str, poc_dir: Path) -> PocGener
     if parsed:
         parsed.to_json_file(json_path)
     return parsed
+
+
+def _persist_generation_summary(summary: PocGenerationSummary, poc_dir: Path) -> None:
+    """Persist a structured generation summary created without a model summary turn."""
+    summary_path = poc_dir / "generation_summary.md"
+    json_path = poc_dir / "generation_summary.json"
+    summary_path.write_text(
+        f"# Status: {summary.status.value}\n\n"
+        f"## Summary\n\n{summary.summary}\n\n"
+        f"## Next Actions\n\n{summary.next_actions}\n"
+    )
+    summary.to_json_file(json_path)
 
 
 def _load_previous_analysis_summary(previous_attempt_dir: Path) -> str | None:

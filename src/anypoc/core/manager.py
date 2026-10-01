@@ -219,6 +219,51 @@ class POCManager:
             self.metadata.knowledge_extracted_attempts[bug_stem].append(attempt_number)
             self.metadata.save(self.metadata_file)
 
+    def _archive_attempt_history(self, output_dir: Path, bug_stem: str) -> Path | None:
+        """
+        Move existing attempt directories out of the report output directory.
+
+        This is used for clean experiments where the next agent run must not be
+        able to inspect prior attempts through the mounted /home/playground/output.
+        """
+        if not output_dir.exists():
+            return None
+
+        attempt_dirs = sorted(
+            (
+                entry
+                for entry in output_dir.iterdir()
+                if entry.is_dir() and entry.name.startswith("attempt_")
+            ),
+            key=lambda path: path.name,
+        )
+        if not attempt_dirs:
+            return None
+
+        archive_dir = (
+            output_dir.parent
+            / ".isolated_attempt_history"
+            / bug_stem
+            / datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        )
+        archive_dir.mkdir(parents=True, exist_ok=False)
+
+        moved: list[str] = []
+        for attempt_dir in attempt_dirs:
+            destination = archive_dir / attempt_dir.name
+            shutil.move(str(attempt_dir), str(destination))
+            moved.append(attempt_dir.name)
+
+        manifest = {
+            "bug_report_stem": bug_stem,
+            "source_output_dir": str(output_dir),
+            "archived_at": datetime.now().isoformat(),
+            "attempts": moved,
+        }
+        (archive_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+        logger.info(f"{LOG_PREFIX} Archived prior attempts for clean context: {archive_dir}")
+        return archive_dir
+
     # -------------------------------------------------------------------------
     # POC Generation
     # -------------------------------------------------------------------------
@@ -236,6 +281,7 @@ class POCManager:
         memory_limit: str | None = None,
         resume_from: int | None = None,
         help_context: str | None = None,
+        fresh_context: bool = False,
     ) -> dict[str, Any]:
         """
         Run POC generation for a single bug report.
@@ -254,6 +300,8 @@ class POCManager:
             resume_from: Explicit attempt number to retry from. When set, the new
                 attempt inherits context from that attempt's directory.
             help_context: Additional user-provided instructions for the retry.
+            fresh_context: If True, disable AnyPoC knowledge and archive prior
+                attempts outside the mounted report output directory before running.
 
         Returns:
             Status dictionary with attempt results
@@ -261,6 +309,17 @@ class POCManager:
         # Use override paths when running in container, otherwise derive from project
         output_dir = output_dir_override if output_dir_override else self.project.get_poc_output_dir(bug_report)
         knowledge_dir = knowledge_dir_override if knowledge_dir_override else self.knowledge_dir
+
+        if fresh_context:
+            if resume_from is not None:
+                raise ValueError("--fresh-context cannot be combined with --resume-from")
+            if readonly_knowledge:
+                logger.warn(f"{LOG_PREFIX} --fresh-context ignores --read-only-knowledge")
+            disable_knowledge = True
+            extract_knowledge = False
+            readonly_knowledge = False
+            self._archive_attempt_history(output_dir, bug_report.stem)
+
         knowledge_manager = (
             KnowledgeManager(knowledge_dir, project_name=self.project.name)
             if knowledge_dir_override
@@ -269,6 +328,10 @@ class POCManager:
         current_attempt = find_next_attempt_number(output_dir)
 
         logger.info(f"{LOG_PREFIX} Processing {bug_report.stem} (attempt {current_attempt})")
+        logger.info(
+            f"{LOG_PREFIX} Execution mode: {'container' if in_container else 'host'} "
+            f"output_dir={output_dir} knowledge_dir={knowledge_dir if not disable_knowledge else 'disabled'}"
+        )
 
         if in_container:
             # Running inside container - call generate_poc directly
@@ -296,9 +359,10 @@ class POCManager:
                 memory_limit=memory_limit,
                 resume_from=resume_from,
                 help_context=help_context,
+                fresh_context=fresh_context,
             )
             if exit_code != 0:
-                logger.warn(f"{LOG_PREFIX} Container execution failed with code {exit_code}")
+                logger.error(f"{LOG_PREFIX} Container execution failed with code {exit_code}")
 
             # Reload knowledge manager cache to pick up any ratings made inside container
             if not disable_knowledge:
@@ -322,6 +386,7 @@ class POCManager:
         memory_limit: str | None = None,
         resume_from: int | None = None,
         help_context: str | None = None,
+        fresh_context: bool = False,
     ) -> int:
         """
         Execute POC generation in the project's Docker container.
@@ -334,6 +399,7 @@ class POCManager:
             readonly_knowledge: If True, provide existing knowledge but skip extraction
             resume_from: Explicit attempt number to retry from.
             help_context: Additional user-provided instructions for the retry.
+            fresh_context: If True, propagate clean-context mode into the container.
 
         Returns:
             Container exit code
@@ -353,10 +419,21 @@ class POCManager:
         paths_copy = input_dir / "paths.md"
         shutil.copy2(self.project.paths_file, paths_copy)
 
+        # Stage only the runtime config needed by Project inside the container.
+        # Avoid mounting Dockerfile/scripts because those may contain setup hints
+        # that should not be part of a blind PoC-generation prompt.
+        project_config_copy = input_dir / "project_config"
+        if project_config_copy.exists():
+            shutil.rmtree(project_config_copy)
+        project_config_copy.mkdir(parents=True)
+        shutil.copy2(self.project.paths_file, project_config_copy / "paths.md")
+        if self.project.prompts_dir.exists():
+            shutil.copytree(self.project.prompts_dir, project_config_copy / "prompts")
+
         # Create executor with appropriate mounts
-        # The user-owned project config dir (paths.md, prompts, Dockerfile) is
-        # mounted read-only into the standard ANYPOC_HOME location inside the
-        # container so the installed anypoc package resolves the project by name.
+        # The staged project config is mounted read-only into the standard
+        # ANYPOC_HOME location inside the container so the installed anypoc
+        # package resolves the project by name without exposing build scripts.
         container_project_dir = f"/home/playground/.anypoc/projects/{self.project.name}"
         path_mounts = [
             PathMount("bug_report", "/home/playground/input/bug_report.md", "ro"),
@@ -368,7 +445,7 @@ class POCManager:
             "bug_report": str(bug_report_copy),
             "paths": str(paths_copy),
             "output": str(output_dir),
-            "project_config": str(self.project.config_dir),
+            "project_config": str(project_config_copy),
         }
 
         if not disable_knowledge:
@@ -412,6 +489,9 @@ class POCManager:
         if help_context:
             cli_command.extend(["--help-context", help_context])
 
+        if fresh_context:
+            cli_command.append("--fresh-context")
+
         docker_cmd = executor.build_docker_command(cli_command, path_values)
 
         # Use the standard in-container anypoc home. The mounted project config
@@ -440,6 +520,7 @@ class POCManager:
         readonly_knowledge: bool = False,
         memory_limit: str | None = None,
         spend_limiter: SpendLimiter | None = None,
+        fresh_context: bool = False,
     ) -> dict[str, Any]:
         """
         Run POC generation for multiple bug reports.
@@ -453,7 +534,10 @@ class POCManager:
             disable_knowledge: If True, disable all knowledge features
             skip_analysis: If True, skip bug analysis and treat as valid
             readonly_knowledge: If True, provide existing knowledge but skip extraction
+            memory_limit: Docker container memory limit
             spend_limiter: Optional spend limiter to enforce a dollar budget
+            fresh_context: If True, run each report without knowledge and archive
+                old attempts outside the mounted report output directory.
 
         Returns:
             Summary of batch processing results
@@ -482,7 +566,7 @@ class POCManager:
 
                 # Snapshot the attempt counter so we only bill new work
                 output_dir = self.project.get_poc_output_dir(report)
-                attempt_before = find_next_attempt_number(output_dir)
+                attempt_before = 1 if fresh_context else find_next_attempt_number(output_dir)
 
                 result = await self.run_single(
                     report,
@@ -492,6 +576,7 @@ class POCManager:
                     skip_analysis=skip_analysis,
                     readonly_knowledge=readonly_knowledge,
                     memory_limit=memory_limit,
+                    fresh_context=fresh_context,
                 )
                 results.append(result)
 
@@ -509,7 +594,7 @@ class POCManager:
             async def process_one(report: Path) -> tuple[Path, dict, int, int]:
                 async with semaphore:
                     output_dir = self.project.get_poc_output_dir(report)
-                    attempt_before = find_next_attempt_number(output_dir)
+                    attempt_before = 1 if fresh_context else find_next_attempt_number(output_dir)
                     r = await self.run_single(
                         report,
                         in_container=in_container,
@@ -518,6 +603,7 @@ class POCManager:
                         skip_analysis=skip_analysis,
                         readonly_knowledge=readonly_knowledge,
                         memory_limit=memory_limit,
+                        fresh_context=fresh_context,
                     )
                     attempt_after = find_next_attempt_number(output_dir)
                     return report, r, attempt_before, attempt_after
@@ -779,6 +865,16 @@ def cli_run(
             help="Provide existing knowledge to the generator but skip knowledge extraction after generation",
         ),
     ] = False,
+    fresh_context: Annotated[
+        bool,
+        typer.Option(
+            "--fresh-context",
+            help=(
+                "Run without AnyPoC knowledge and hide previous attempt directories "
+                "by archiving them outside the mounted report output directory."
+            ),
+        ),
+    ] = False,
     output_dir: Annotated[
         Optional[str], typer.Option("--output-dir", "-o", hidden=True, help="Output directory (for container use)")
     ] = None,
@@ -830,6 +926,9 @@ def cli_run(
         # Run without knowledge features
         p poc run firefox --no-knowledge
 
+        # Run a clean experiment for the same report, without knowledge or prior attempts
+        p poc run firefox --bug-report scans/history-abc12345/reports/my-bug.md --fresh-context
+
         # Use existing knowledge but don't extract new knowledge
         p poc run firefox --read-only-knowledge
 
@@ -844,6 +943,9 @@ def cli_run(
 
     disable_knowledge = no_knowledge
     readonly_knowledge = read_only_knowledge
+    if fresh_context:
+        disable_knowledge = True
+        readonly_knowledge = False
 
     # Parse override paths for container use
     output_dir_override = Path(output_dir) if output_dir else None
@@ -869,6 +971,7 @@ def cli_run(
                 memory_limit=memory_limit,
                 resume_from=resume_from,
                 help_context=help_context,
+                fresh_context=fresh_context,
             )
         )
         _print_report_status(result)
@@ -886,6 +989,7 @@ def cli_run(
                 readonly_knowledge=readonly_knowledge,
                 memory_limit=memory_limit,
                 spend_limiter=limiter,
+                fresh_context=fresh_context,
             )
         )
         _print_batch_summary(result)

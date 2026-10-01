@@ -6,6 +6,7 @@ This module provides bug report validation functionality to be used
 as part of the POC generation pipeline.
 """
 
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from pathlib import Path
 
 from caw import Agent, ToolGroup
@@ -14,6 +15,20 @@ from anypoc.types import BugAnalysisResult, BugAnalysisVerdict
 from anypoc.utils import logger
 
 LOG_PREFIX = "[Bug Analyzer]"
+
+
+def _send_with_heartbeat(session, prompt: str, title: str, interval_seconds: int = 30):
+    """Run a blocking agent turn while emitting periodic heartbeat logs."""
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(session.send, prompt)
+        elapsed = 0
+
+        while True:
+            try:
+                return future.result(timeout=interval_seconds)
+            except FutureTimeoutError:
+                elapsed += interval_seconds
+                logger.info(f"{LOG_PREFIX} {title} still running ({elapsed}s elapsed)")
 
 
 def analyze_bug(
@@ -55,7 +70,7 @@ def analyze_bug(
 
     logger.info(f"{LOG_PREFIX} Analyzing...")
     with agent.start_session(traj_path=trajs_dir / "bug_analyzer.traj.json") as session:
-        turn = session.send(analysis_prompt)
+        turn = _send_with_heartbeat(session, analysis_prompt, "Analysis")
         result_text = turn.result
 
     # Save raw response

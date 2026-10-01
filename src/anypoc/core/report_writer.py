@@ -5,6 +5,8 @@ Report Writer - Generate concise bug report for developers
 This module creates a submission-ready bug report from validated findings.
 """
 
+import re
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from pathlib import Path
 
 from caw import Agent, ToolGroup
@@ -12,6 +14,20 @@ from caw import Agent, ToolGroup
 from anypoc.utils import logger
 
 LOG_PREFIX = "[Report Writer]"
+
+
+def _send_with_heartbeat(session, prompt: str, title: str, interval_seconds: int = 30):
+    """Run a blocking agent turn while emitting periodic heartbeat logs."""
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        future = executor.submit(session.send, prompt)
+        elapsed = 0
+
+        while True:
+            try:
+                return future.result(timeout=interval_seconds)
+            except FutureTimeoutError:
+                elapsed += interval_seconds
+                logger.info(f"{LOG_PREFIX} {title} still running ({elapsed}s elapsed)")
 
 
 def write_report(
@@ -45,9 +61,14 @@ def write_report(
 
     logger.info(f"{LOG_PREFIX} Writing report...")
 
-    with agent.start_session(traj_path=trajs_dir / "report_writer.traj.json") as session:
-        turn = session.send(prompt)
-        report_content = turn.result
+    report_content = ""
+    try:
+        with agent.start_session(traj_path=trajs_dir / "report_writer.traj.json") as session:
+            turn = _send_with_heartbeat(session, prompt, "Report generation")
+            report_content = turn.result
+    except Exception as exc:
+        logger.warn(f"{LOG_PREFIX} Model report generation failed, using fallback writer: {exc}")
+        report_content = _build_fallback_report(filtered_bug_report, poc_dir)
 
     # Save the report
     if report_content:
@@ -108,4 +129,50 @@ Review the POC files and reference them in your report.
 
 {format_section}
 
-Keep it short. No fluff."""
+    Keep it short. No fluff."""
+
+
+def _extract_title(filtered_bug_report: str) -> str:
+    for line in filtered_bug_report.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("# "):
+            return stripped[2:].strip()
+    return "AnyPoC reproduction report"
+
+
+def _extract_section(filtered_bug_report: str, heading: str) -> str:
+    pattern = re.compile(rf"^## {re.escape(heading)}\s*$", re.MULTILINE)
+    match = pattern.search(filtered_bug_report)
+    if not match:
+        return ""
+    start = match.end()
+    next_match = re.search(r"^##\s+", filtered_bug_report[start:], re.MULTILINE)
+    end = start + next_match.start() if next_match else len(filtered_bug_report)
+    return filtered_bug_report[start:end].strip()
+
+
+def _build_fallback_report(filtered_bug_report: str, poc_dir: Path) -> str:
+    title = _extract_title(filtered_bug_report)
+    poc_summary = _extract_section(filtered_bug_report, "Desired PoC") or "See attached PoC artifacts."
+    analysis = _extract_section(filtered_bug_report, "Actual Behavior") or _extract_section(
+        filtered_bug_report, "Affected Code"
+    )
+    impact = _extract_section(filtered_bug_report, "Impact") or "See attached PoC artifacts and reproduction logs."
+
+    files = []
+    for path in sorted(poc_dir.rglob("*")):
+        if path.is_file():
+            files.append(path.relative_to(poc_dir).as_posix())
+    files_block = "\n".join(f"- `{name}`" for name in files) if files else "- No PoC files were captured."
+
+    return (
+        f"# {title}\n\n"
+        "## Proof-of-Concept\n\n"
+        f"{poc_summary}\n\n"
+        "Attached files:\n"
+        f"{files_block}\n\n"
+        "## Vulnerable code analysis\n\n"
+        f"{analysis or 'See the validated bug report and reproduction artifacts.'}\n\n"
+        "## Impact\n\n"
+        f"{impact}\n"
+    )
