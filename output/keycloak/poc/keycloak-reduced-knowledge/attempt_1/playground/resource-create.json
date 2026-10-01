@@ -1,0 +1,15 @@
+{
+  "name": "Marta PoC Path Resource 1788600425825547795",
+  "ownerManagedAccess": true,
+  "scopes": [
+    {
+      "name": "Scope A"
+    },
+    {
+      "name": "Scope B"
+    },
+    {
+      "name": "Scope C"
+    }
+  ]
+}

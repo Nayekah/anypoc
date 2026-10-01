@@ -1,0 +1,45 @@
+[ {
+  "name" : "ANYPOC Kolo Resource",
+  "owner" : {
+    "id" : "8cfbb0b6-d633-453b-90be-b307b1b38cc9",
+    "name" : "kolo"
+  },
+  "ownerManagedAccess" : true,
+  "attributes" : {
+    "anypoc_marker" : [ "victim-target" ]
+  },
+  "_id" : "814f1ce6-e4fd-4dae-8e68-d557cc92fb96",
+  "uris" : [ ],
+  "scopes" : [ {
+    "id" : "fb75a821-286e-4155-a23b-36c45ea76bbe",
+    "name" : "Scope B"
+  }, {
+    "id" : "965f5854-54eb-4a6d-827b-edf8696843aa",
+    "name" : "Scope A"
+  }, {
+    "id" : "497c53c4-0fb5-4d69-bc4e-77996869fa8a",
+    "name" : "Scope C"
+  } ]
+}, {
+  "name" : "ANYPOC Marta Resource",
+  "owner" : {
+    "id" : "35fda472-2479-43e3-b035-8b3458c13c66",
+    "name" : "marta"
+  },
+  "ownerManagedAccess" : true,
+  "attributes" : {
+    "anypoc_marker" : [ "attack-surface" ]
+  },
+  "_id" : "85f49e27-5f76-4f77-a99d-9beadf34918f",
+  "uris" : [ ],
+  "scopes" : [ {
+    "id" : "fb75a821-286e-4155-a23b-36c45ea76bbe",
+    "name" : "Scope B"
+  }, {
+    "id" : "965f5854-54eb-4a6d-827b-edf8696843aa",
+    "name" : "Scope A"
+  }, {
+    "id" : "497c53c4-0fb5-4d69-bc4e-77996869fa8a",
+    "name" : "Scope C"
+  } ]
+} ]

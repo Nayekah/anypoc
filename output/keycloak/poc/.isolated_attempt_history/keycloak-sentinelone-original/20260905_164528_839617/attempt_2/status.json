@@ -1,0 +1,25 @@
+{
+  "analysis": {
+    "status": "error",
+    "timestamp": "2026-08-26T13:14:02.275508"
+  },
+  "generation": {
+    "status": "pending",
+    "timestamp": ""
+  },
+  "evidence_check": {
+    "status": "pending",
+    "timestamp": ""
+  },
+  "report": {
+    "status": "pending",
+    "timestamp": ""
+  },
+  "bug_report_path": "/home/playground/input/bug_report.md",
+  "output_dir": "/home/playground/output/attempt_2",
+  "started_at": "2026-08-26T13:13:37.839531",
+  "completed_at": "2026-08-26T13:14:02.275528",
+  "attempt_number": 2,
+  "resumed_from": null,
+  "help_needed_reason": ""
+}

@@ -1,0 +1,7 @@
+{
+  "registrationEmailAsUsername" : false,
+  "verifyEmail" : false,
+  "loginWithEmailAllowed" : true,
+  "requiredCredentials" : [ "password" ],
+  "attributes" : { }
+}

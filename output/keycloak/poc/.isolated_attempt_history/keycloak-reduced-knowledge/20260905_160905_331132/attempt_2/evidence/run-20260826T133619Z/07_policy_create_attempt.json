@@ -1,0 +1,30 @@
+{
+  "body": {
+    "decisionStrategy": "UNANIMOUS",
+    "id": "881c2125-ed0c-40bf-aa9d-b10f16c4342c",
+    "logic": "POSITIVE",
+    "name": "cross-boundary-poc-1787751380",
+    "owner": "aa9994f8-a10c-4234-9f87-aba26f1379eb",
+    "scopes": [
+      "Scope A"
+    ],
+    "type": "uma",
+    "users": [
+      "marta"
+    ]
+  },
+  "payload": {
+    "name": "cross-boundary-poc-1787751380",
+    "resources": [
+      "b53673bd-a750-400b-8959-0b950302d91c"
+    ],
+    "scopes": [
+      "Scope A"
+    ],
+    "users": [
+      "marta"
+    ]
+  },
+  "status": 200,
+  "url": "http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/5ed97cee-2b7d-49dc-8970-de02b5dab5d1"
+}

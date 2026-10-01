@@ -1,0 +1,9 @@
+{
+  "amount": 1337.0,
+  "owner_login": "admin@lab.local",
+  "request_id": 1,
+  "request_name": "ANYPOC Admin Approval",
+  "secret_notes": "Admin-only export marker for AnyPoC approval lab",
+  "secret_token": "ANYPOC-APPROVAL-SECRET-9f4b3c",
+  "state": "approved"
+}

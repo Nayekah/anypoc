@@ -1,0 +1,22 @@
+{
+  "generation_dir": "/home/playground/output/attempt_3",
+  "ratings": [
+    {
+      "file_path": "odoo/poc_forms/odoo_jsonrpc_wizard_download_flow.md",
+      "score": 9.0,
+      "timestamp": "2026-08-15T14:23:46.788972"
+    },
+    {
+      "file_path": "odoo/internal_tools/attempt_directory_and_poc_out_dir.md",
+      "score": 9.0,
+      "timestamp": "2026-08-15T14:23:50.400111"
+    },
+    {
+      "file_path": "odoo/code/odoo_call_kw_download_contracts.md",
+      "score": 8.0,
+      "timestamp": "2026-08-15T14:23:53.037202"
+    }
+  ],
+  "created_at": "2026-08-15T14:27:47.632599",
+  "source": "runtime"
+}

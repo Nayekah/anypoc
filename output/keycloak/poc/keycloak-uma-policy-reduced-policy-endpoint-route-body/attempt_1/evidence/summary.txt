@@ -1,0 +1,13 @@
+realm=anypoc
+attacker=marta
+attacker_resource=b1385043-3cfc-4d4c-9aac-5c5afe07e06e
+victim_resource=291c1f42-cb7a-46cd-be79-d6851533d448
+scope=Scope A
+policy_id=86e9b36e-e270-4517-93e9-f7996dc8581b
+baseline_decision_http=403
+exploit_create_http=200
+after_decision_http=200
+after_decision_body={"result":true}
+exploit_delete_http=204
+restored_decision_http=403
+restored_decision_body={"error":"access_denied","error_description":"not_authorized"}

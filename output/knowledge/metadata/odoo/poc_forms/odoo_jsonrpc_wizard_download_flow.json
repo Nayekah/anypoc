@@ -1,0 +1,40 @@
+{
+  "knowledge_id": "odoo/poc_forms/odoo_jsonrpc_wizard_download_flow",
+  "file_path": "odoo/poc_forms/odoo_jsonrpc_wizard_download_flow.md",
+  "category_path": [
+    "odoo",
+    "poc_forms"
+  ],
+  "knowledge_type": "Other",
+  "keywords": [
+    "odoo",
+    "json-rpc",
+    "wizard",
+    "web/content",
+    "access control",
+    "poc form",
+    "readiness",
+    "session-info",
+    "artifacts"
+  ],
+  "version": 2,
+  "usefulness_ratings": [
+    [
+      9.0
+    ],
+    [
+      10.0
+    ]
+  ],
+  "iterations_survived": 2,
+  "source_generations": [
+    "/mnt/c/Users/Ghana/Documents/research/anypoc/output/odoo/poc/odoo-anypoc-approval-export-idor/attempt_2",
+    "/mnt/c/Users/Ghana/Documents/research/anypoc/output/odoo/poc/odoo-anypoc-approval-export-idor/attempt_3"
+  ],
+  "source_success_flags": [
+    false,
+    false
+  ],
+  "created_at": "2026-08-15T21:20:14.571471",
+  "updated_at": "2026-08-15T14:32:50.488498"
+}

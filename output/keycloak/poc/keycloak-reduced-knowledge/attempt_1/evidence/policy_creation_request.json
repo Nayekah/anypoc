@@ -1,0 +1,14 @@
+{
+  "description": "URL resource is attacker-owned, body injects victim resource",
+  "name": "cve-2026-4636-cross-resource-1788600912",
+  "resources": [
+    "dee75647-d81f-4922-8990-26589e20aca4",
+    "f1aeb616-8c98-4cb9-879e-d454d935ef23"
+  ],
+  "scopes": [
+    "Scope A"
+  ],
+  "users": [
+    "marta"
+  ]
+}

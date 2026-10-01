@@ -1,0 +1,4 @@
+actor=marta
+route_resource=85f49e27-5f76-4f77-a99d-9beadf34918f
+victim_resource=814f1ce6-e4fd-4dae-8e68-d557cc92fb96
+victim_name=ANYPOC Kolo Resource

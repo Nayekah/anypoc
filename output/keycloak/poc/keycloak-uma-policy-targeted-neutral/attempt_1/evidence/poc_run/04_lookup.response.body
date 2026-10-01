@@ -1,0 +1,1 @@
+[{"id":"b5a1ed5e-75f5-477e-84fc-3f5272cacf08","name":"cross-boundary-poc","type":"uma","scopes":["Scope A","Scope C","Scope B"],"logic":"POSITIVE","decisionStrategy":"UNANIMOUS","owner":"6e2c3b9a-6aa1-4740-ae34-5a0743156409","users":["marta"]}]

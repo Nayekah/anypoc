@@ -1,0 +1,17 @@
+{
+  "generation_dir": "/mnt/c/Users/Ghana/Documents/research/anypoc/output/odoo/poc/odoo-anypoc-approval-export-idor/attempt_2",
+  "knowledge_dir": "/mnt/c/Users/Ghana/Documents/research/anypoc/output/knowledge",
+  "reported_ids": [
+    "odoo/internal_tools/attempt_status_vs_evidence.md",
+    "odoo/internal_tools/odoo_status_helper.md",
+    "odoo/internal_tools/attempt_directory_and_poc_out_dir.md",
+    "odoo/poc_forms/odoo_jsonrpc_wizard_download_flow.md",
+    "odoo/code/odoo_call_kw_download_contracts.md"
+  ],
+  "updated_ids": [],
+  "ratings": [],
+  "extractor_traj_path": "/mnt/c/Users/Ghana/Documents/research/anypoc/output/odoo/poc/odoo-anypoc-approval-export-idor/attempt_2/trajs/knowledge_extractor.traj.json",
+  "was_successful": false,
+  "created_at": "2026-08-15T21:20:29.228486",
+  "source": "runtime"
+}

@@ -1,0 +1,2 @@
+REQUEST
+POST http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/a10797fc-7b38-4d82-807f-dbda2d32576a {"name":"cross-boundary-poc","users":["marta"],"resources":["f872c1d2-a1e5-49b7-9548-b38d10a915e6"]}

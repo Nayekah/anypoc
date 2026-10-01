@@ -1,0 +1,3 @@
+POST /web/dataset/call_kw/anypoc.approval.export.wizard/action_generate_export
+status=200
+content-type=application/json

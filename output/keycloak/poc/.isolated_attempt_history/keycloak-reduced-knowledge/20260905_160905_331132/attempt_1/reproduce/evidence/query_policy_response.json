@@ -1,0 +1,1 @@
+[{"id":"1eb39065-b446-45be-863d-5fd13b81ffd3","name":"cross-boundary-repro-1787747078","type":"uma","scopes":["Scope A","Scope C","Scope B"],"logic":"POSITIVE","decisionStrategy":"UNANIMOUS","owner":"2099ae31-c933-49dd-a026-5f07163c9387","users":["marta"]}]

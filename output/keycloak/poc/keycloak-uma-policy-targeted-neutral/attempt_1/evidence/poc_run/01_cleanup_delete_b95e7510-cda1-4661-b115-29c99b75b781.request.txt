@@ -1,0 +1,2 @@
+REQUEST
+DELETE http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/b95e7510-cda1-4661-b115-29c99b75b781

@@ -1,0 +1,14 @@
+{
+  "name": "cross-resource-policy-ordered-1788600403",
+  "description": "PoC path/body resource mismatch ordered",
+  "scopes": [
+    "Scope A"
+  ],
+  "users": [
+    "marta"
+  ],
+  "resources": [
+    "3a67b1df-1e77-4dfa-82f9-0fc6874b5c1d",
+    "05c947be-ecd7-402a-90e4-9fb674435809"
+  ]
+}

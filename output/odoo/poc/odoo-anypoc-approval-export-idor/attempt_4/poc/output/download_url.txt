@@ -1,0 +1,1 @@
+/web/content/?model=anypoc.approval.export.wizard&id=3&field=export_file&filename_field=export_filename&download=true

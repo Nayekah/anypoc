@@ -1,0 +1,11 @@
+[
+  {
+    "id": 2,
+    "name": "ANYPOC Employee Decoy",
+    "owner_id": [
+      6,
+      "AnyPoC Employee"
+    ],
+    "secret_token": "ANYPOC-EMPLOYEE-DECOY"
+  }
+]

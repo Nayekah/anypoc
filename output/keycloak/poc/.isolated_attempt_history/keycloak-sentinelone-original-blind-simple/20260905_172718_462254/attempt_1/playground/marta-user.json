@@ -1,0 +1,19 @@
+{
+  "id" : "3c04e2b2-c638-4efb-bfe2-3f8bd0734363",
+  "username" : "marta",
+  "emailVerified" : false,
+  "enabled" : true,
+  "createdTimestamp" : 1788602212522,
+  "totp" : false,
+  "disableableCredentialTypes" : [ ],
+  "requiredActions" : [ ],
+  "notBefore" : 0,
+  "access" : {
+    "manageGroupMembership" : true,
+    "resetPassword" : true,
+    "view" : true,
+    "mapRoles" : true,
+    "impersonate" : true,
+    "manage" : true
+  }
+}

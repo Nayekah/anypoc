@@ -1,0 +1,32 @@
+{
+  "knowledge_id": "keycloak/code/uma_ticket_request_shape",
+  "file_path": "keycloak/code/uma_ticket_request_shape.md",
+  "category_path": [
+    "keycloak",
+    "code"
+  ],
+  "knowledge_type": "Other",
+  "keywords": [
+    "keycloak",
+    "uma",
+    "uma-ticket",
+    "openid-connect",
+    "token endpoint",
+    "permission parameter",
+    "authorization.permissions",
+    "resource id"
+  ],
+  "version": 1,
+  "usefulness_ratings": [
+    []
+  ],
+  "iterations_survived": 0,
+  "source_generations": [
+    "/mnt/c/Users/Ghana/Documents/research/anypoc/output/keycloak/poc/keycloak-cve-2026-4636-uma-policy-bypass/attempt_1"
+  ],
+  "source_success_flags": [
+    true
+  ],
+  "created_at": "2026-08-26T17:00:47.985354",
+  "updated_at": "2026-08-26T17:00:47.985354"
+}

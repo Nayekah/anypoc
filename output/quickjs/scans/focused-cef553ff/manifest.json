@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-07-24T10:55:18.379514+00:00",
+  "created_at": "2026-07-24T10:43:19.470891+00:00",
+  "inputs": {
+    "instruction": "Audit QuickJS parser, bytecode compiler/interpreter, and runtime paths for crashes reproducible with a small standalone JavaScript file. Prioritize ASan crashes, aborts, assertion failures, and deterministic segfaults; ignore issues requiring large harnesses, external files, non-default build options, or flaky resource exhaustion."
+  },
+  "report_count": 0,
+  "scan_id": "focused-cef553ff",
+  "source_code_dir": "/mnt/c/users/ghana/documents/research/quickjs",
+  "status": "completed",
+  "strategy": "focused"
+}

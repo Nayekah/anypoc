@@ -1,0 +1,12 @@
+{
+  "completed_at": "2026-07-24T11:19:21.452970+00:00",
+  "created_at": "2026-07-24T11:07:54.159328+00:00",
+  "inputs": {
+    "instruction": "Broad follow-up audit of QuickJS parser, bytecode compiler/interpreter, and runtime crash surfaces reproducible with small standalone JavaScript files. Do not restrict the search to the previous await candidate; explore parser edge cases, bytecode emission, exception/control-flow cleanup, modules, typed arrays, async jobs, GC interactions, and runtime builtin misuse. Prioritize deterministic ASan crashes, aborts, assertion failures, and segfaults with a minimal single-file JavaScript PoC."
+  },
+  "report_count": 0,
+  "scan_id": "focused-33f029b5",
+  "source_code_dir": "/mnt/c/users/ghana/documents/research/quickjs",
+  "status": "completed",
+  "strategy": "focused"
+}

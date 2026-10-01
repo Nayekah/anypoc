@@ -1,0 +1,9 @@
+{
+  "jsonrpc": "2.0",
+  "method": "call",
+  "params": {
+    "db": "anypoc_odoo",
+    "login": "employee@lab.local",
+    "password": "employeepass"
+  }
+}

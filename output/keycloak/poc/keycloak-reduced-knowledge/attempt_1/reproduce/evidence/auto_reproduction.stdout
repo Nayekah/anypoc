@@ -1,0 +1,18 @@
+{
+  "attacker_resource_id": "dee75647-d81f-4922-8990-26589e20aca4",
+  "attacker_user": "marta",
+  "evidence_dir": "/home/playground/output/attempt_1/evidence",
+  "granted_permission": {
+    "rsid": "f1aeb616-8c98-4cb9-879e-d454d935ef23",
+    "rsname": "PoC Kolo Victim Resource 1788600912599",
+    "scopes": [
+      "Scope A"
+    ]
+  },
+  "policy_creation_status": 200,
+  "post_exploit_status": 200,
+  "pre_exploit_status": 403,
+  "result": "VULNERABLE",
+  "victim_resource_id": "f1aeb616-8c98-4cb9-879e-d454d935ef23",
+  "victim_user": "kolo"
+}

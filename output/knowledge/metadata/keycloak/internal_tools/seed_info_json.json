@@ -1,0 +1,32 @@
+{
+  "knowledge_id": "keycloak/internal_tools/seed_info_json",
+  "file_path": "keycloak/internal_tools/seed_info_json.md",
+  "category_path": [
+    "keycloak",
+    "internal_tools"
+  ],
+  "knowledge_type": "Other",
+  "keywords": [
+    "keycloak",
+    "seed-info.json",
+    "seeded lab",
+    "resource ids",
+    "token endpoint",
+    "protection api",
+    "credentials",
+    "readiness"
+  ],
+  "version": 1,
+  "usefulness_ratings": [
+    []
+  ],
+  "iterations_survived": 0,
+  "source_generations": [
+    "/mnt/c/Users/Ghana/Documents/research/anypoc/output/keycloak/poc/keycloak-cve-2026-4636-uma-policy-bypass/attempt_1"
+  ],
+  "source_success_flags": [
+    true
+  ],
+  "created_at": "2026-08-26T17:00:34.273338",
+  "updated_at": "2026-08-26T17:00:34.273338"
+}

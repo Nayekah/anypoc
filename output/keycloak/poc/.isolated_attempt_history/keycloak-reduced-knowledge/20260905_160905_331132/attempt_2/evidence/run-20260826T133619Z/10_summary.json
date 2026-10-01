@@ -1,0 +1,21 @@
+{
+  "attacker_path_resource_id": "5ed97cee-2b7d-49dc-8970-de02b5dab5d1",
+  "attacker_user": "marta",
+  "base_url": "http://127.0.0.1:8080",
+  "created_policy_id": "881c2125-ed0c-40bf-aa9d-b10f16c4342c",
+  "evidence_dir": "/home/playground/output/attempt_2/evidence/run-20260826T133619Z",
+  "post_exploit_status": 200,
+  "pre_exploit_status": 403,
+  "result": "success",
+  "victim_permissions": [
+    {
+      "rsid": "b53673bd-a750-400b-8959-0b950302d91c",
+      "rsname": "ANYPOC Kolo Resource",
+      "scopes": [
+        "Scope A"
+      ]
+    }
+  ],
+  "victim_resource_id": "b53673bd-a750-400b-8959-0b950302d91c",
+  "vulnerability": "cross-user UMA policy creation / authorization bypass"
+}

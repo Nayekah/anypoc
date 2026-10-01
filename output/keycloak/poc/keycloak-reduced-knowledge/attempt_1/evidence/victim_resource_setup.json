@@ -1,0 +1,63 @@
+{
+  "note": "The service-account token is used only to create a clean victim-owned resource for repeatable lab setup. Exploit and authorization requests use marta's token.",
+  "victim_create_request": {
+    "attributes": {
+      "anypoc": [
+        "cve-2026-4636-poc"
+      ]
+    },
+    "name": "PoC Kolo Victim Resource 1788600912599",
+    "owner": "kolo",
+    "ownerManagedAccess": true,
+    "scopes": [
+      {
+        "name": "Scope A"
+      },
+      {
+        "name": "Scope B"
+      },
+      {
+        "name": "Scope C"
+      }
+    ]
+  },
+  "victim_create_response": {
+    "_id": "f1aeb616-8c98-4cb9-879e-d454d935ef23",
+    "name": "PoC Kolo Victim Resource 1788600912599",
+    "owner": {
+      "id": "40adf77f-6e9b-4884-9f01-85241f95c0eb",
+      "name": "kolo"
+    },
+    "ownerManagedAccess": true,
+    "resource_scopes": [
+      {
+        "id": "01b4947f-89aa-492c-ae6a-4b4814827d70",
+        "name": "Scope B"
+      },
+      {
+        "id": "8c034794-986f-4575-96b1-26678a672b90",
+        "name": "Scope A"
+      },
+      {
+        "id": "c7dac591-abad-46fe-a096-c26385f400cd",
+        "name": "Scope C"
+      }
+    ],
+    "scopes": [
+      {
+        "id": "01b4947f-89aa-492c-ae6a-4b4814827d70",
+        "name": "Scope B"
+      },
+      {
+        "id": "8c034794-986f-4575-96b1-26678a672b90",
+        "name": "Scope A"
+      },
+      {
+        "id": "c7dac591-abad-46fe-a096-c26385f400cd",
+        "name": "Scope C"
+      }
+    ],
+    "uris": []
+  },
+  "victim_resource_id": "f1aeb616-8c98-4cb9-879e-d454d935ef23"
+}

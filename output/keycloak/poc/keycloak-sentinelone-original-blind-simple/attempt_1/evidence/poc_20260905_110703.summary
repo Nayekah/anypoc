@@ -1,0 +1,7 @@
+resource_id=fe8bedfc-2c57-4867-86be-a4bd5f59debd
+owner=kolo
+create_status=201
+get_before_delete_status=200
+delete_status=204
+get_after_delete_status=404
+transcript=/home/playground/output/attempt_1/evidence/poc_20260905_110703.log

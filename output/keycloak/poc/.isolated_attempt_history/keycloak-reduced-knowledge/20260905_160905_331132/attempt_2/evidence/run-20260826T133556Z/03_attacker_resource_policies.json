@@ -1,0 +1,20 @@
+{
+  "body": [
+    {
+      "decisionStrategy": "UNANIMOUS",
+      "id": "0e3d534c-1c09-4b8f-b5d0-5e3ef106f51c",
+      "logic": "POSITIVE",
+      "name": "cross-boundary-test",
+      "owner": "aa9994f8-a10c-4234-9f87-aba26f1379eb",
+      "scopes": [
+        "Scope A"
+      ],
+      "type": "uma",
+      "users": [
+        "marta"
+      ]
+    }
+  ],
+  "status": 200,
+  "url": "http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy?resource=5ed97cee-2b7d-49dc-8970-de02b5dab5d1"
+}

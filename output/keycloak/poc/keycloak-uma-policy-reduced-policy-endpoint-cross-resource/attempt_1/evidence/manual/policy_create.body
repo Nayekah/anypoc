@@ -1,0 +1,1 @@
+{"id":"58a6edf0-99ad-48a7-83bf-a4191df070af","name":"MartaCrossUserPolicy","description":"local validation marker","type":"uma","scopes":["Scope A"],"logic":"POSITIVE","decisionStrategy":"UNANIMOUS","owner":"35fda472-2479-43e3-b035-8b3458c13c66","users":["marta"]}

@@ -1,0 +1,15 @@
+{
+  "decisionStrategy": "UNANIMOUS",
+  "description": "URL resource is attacker-owned, body injects victim resource",
+  "id": "7f927513-d5d2-4a6b-8b34-548c4653db09",
+  "logic": "POSITIVE",
+  "name": "cve-2026-4636-cross-resource-1788600912",
+  "owner": "131f1619-cc65-455f-82cf-8e5d7dd6cf77",
+  "scopes": [
+    "Scope A"
+  ],
+  "type": "uma",
+  "users": [
+    "marta"
+  ]
+}

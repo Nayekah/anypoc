@@ -1,0 +1,1 @@
+{"result":"succeeded","baseline_authorization_status":"403","malicious_policy_create_status":"200","post_authorization_status":"200","post_authorization_user":"marta","expected_victim_resource_id":"8c849fa8-b2aa-4e32-a332-4d97d1eab328","post_authorization_resource_id":"8c849fa8-b2aa-4e32-a332-4d97d1eab328"}

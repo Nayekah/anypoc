@@ -1,0 +1,14 @@
+{
+  "body": {
+    "error": "access_denied",
+    "error_description": "not_authorized"
+  },
+  "form": {
+    "audience": "resource-server-test",
+    "client_id": "resource-server-test",
+    "client_secret": "secret",
+    "grant_type": "urn:ietf:params:oauth:grant-type:uma-ticket",
+    "permission": "b53673bd-a750-400b-8959-0b950302d91c#Scope A"
+  },
+  "status": 403
+}

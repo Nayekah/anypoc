@@ -1,0 +1,36 @@
+{
+  "realmMappings" : [ {
+    "id" : "9e679276-8b14-4544-a340-02e8c7d957cc",
+    "name" : "uma_protection",
+    "composite" : false,
+    "clientRole" : false,
+    "containerId" : "b39c81fc-688a-44c1-8b50-c6ac70416e17"
+  }, {
+    "id" : "c446b73e-3563-4245-9c75-65eb52c181f2",
+    "name" : "default-roles-anypoc",
+    "description" : "${role_default-roles}",
+    "composite" : true,
+    "clientRole" : false,
+    "containerId" : "b39c81fc-688a-44c1-8b50-c6ac70416e17"
+  }, {
+    "id" : "8b7a390e-8b4d-4578-858f-1f861ed810c0",
+    "name" : "uma_authorization",
+    "description" : "${role_uma_authorization}",
+    "composite" : false,
+    "clientRole" : false,
+    "containerId" : "b39c81fc-688a-44c1-8b50-c6ac70416e17"
+  } ],
+  "clientMappings" : {
+    "resource-server-test" : {
+      "id" : "82cb9e47-4c4f-4c46-ab63-c9fd1f61c1ce",
+      "client" : "resource-server-test",
+      "mappings" : [ {
+        "id" : "83e7665f-d2c3-4f3d-8f57-db86f79084b0",
+        "name" : "uma_protection",
+        "composite" : false,
+        "clientRole" : true,
+        "containerId" : "82cb9e47-4c4f-4c46-ab63-c9fd1f61c1ce"
+      } ]
+    }
+  }
+}

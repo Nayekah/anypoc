@@ -1,0 +1,4 @@
+Reproduction succeeded.
+Victim resource: 22294824-6815-4f79-ba8a-7d40872ffc97
+Created policy: 1eb39065-b446-45be-863d-5fd13b81ffd3
+Artifacts: /home/playground/output/attempt_1/reproduce/artifacts

@@ -1,0 +1,80 @@
+== normal attempt 1 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_normal_with_original_file_tail.rar
+sha256=32075d6aa8c3f87c6195d7f4032d20f1d2a7653254e486ba2dcd1f067070a847
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== normal attempt 2 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_normal_with_original_file_tail.rar
+sha256=32075d6aa8c3f87c6195d7f4032d20f1d2a7653254e486ba2dcd1f067070a847
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== normal attempt 3 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_normal_with_original_file_tail.rar
+sha256=32075d6aa8c3f87c6195d7f4032d20f1d2a7653254e486ba2dcd1f067070a847
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== normal attempt 4 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_normal_with_original_file_tail.rar
+sha256=32075d6aa8c3f87c6195d7f4032d20f1d2a7653254e486ba2dcd1f067070a847
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== normal attempt 5 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_normal_with_original_file_tail.rar
+sha256=32075d6aa8c3f87c6195d7f4032d20f1d2a7653254e486ba2dcd1f067070a847
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== overlong attempt 1 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_overlong_with_original_file_tail.rar
+sha256=933c3193ab989a94ed826d9e7c933ef434a1b8af706762d8c5684446d50e9e34
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== overlong attempt 2 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_overlong_with_original_file_tail.rar
+sha256=933c3193ab989a94ed826d9e7c933ef434a1b8af706762d8c5684446d50e9e34
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== overlong attempt 3 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_overlong_with_original_file_tail.rar
+sha256=933c3193ab989a94ed826d9e7c933ef434a1b8af706762d8c5684446d50e9e34
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== overlong attempt 4 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_overlong_with_original_file_tail.rar
+sha256=933c3193ab989a94ed826d9e7c933ef434a1b8af706762d8c5684446d50e9e34
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+
+== overlong attempt 5 ==
+archive=/mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/generated/c001_overlong_with_original_file_tail.rar
+sha256=933c3193ab989a94ed826d9e7c933ef434a1b8af706762d8c5684446d50e9e34
+exit_status=127
+-- stdout --
+-- stderr --
+  /mnt/c/Users/Ghana/Documents/research/anypoc/output/libarchive/poc/libarchive-rar5-overlong-varint/attempt_5/reproduce/poc/run_poc.sh: line 31: /opt/libarchive/build/bin/bsdtar: No such file or directory
+

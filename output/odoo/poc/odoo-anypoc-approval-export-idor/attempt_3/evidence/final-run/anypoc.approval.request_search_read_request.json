@@ -1,0 +1,30 @@
+{
+  "jsonrpc": "2.0",
+  "method": "call",
+  "params": {
+    "args": [
+      [
+        [
+          "name",
+          "=",
+          "ANYPOC Admin Approval"
+        ]
+      ]
+    ],
+    "kwargs": {
+      "context": {
+        "lang": "en_US",
+        "tz": false,
+        "uid": 6
+      },
+      "fields": [
+        "id",
+        "name",
+        "owner_id",
+        "secret_token"
+      ]
+    },
+    "method": "search_read",
+    "model": "anypoc.approval.request"
+  }
+}

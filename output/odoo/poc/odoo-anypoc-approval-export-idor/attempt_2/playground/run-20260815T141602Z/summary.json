@@ -1,0 +1,9 @@
+{
+  "download_url": "/web/content/?model=anypoc.approval.export.wizard&id=4&field=export_file&filename_field=export_filename&download=true",
+  "recovered_owner_login": "admin@lab.local",
+  "recovered_request_name": "ANYPOC Admin Approval",
+  "recovered_secret_token": "ANYPOC-APPROVAL-SECRET-9f4b3c",
+  "session_user": "employee@lab.local",
+  "target_request_id": 1,
+  "wizard_id": 4
+}

@@ -1,0 +1,19 @@
+{
+  "id" : "2004b090-beb4-4496-88be-a7ca54294818",
+  "username" : "kolo",
+  "emailVerified" : false,
+  "enabled" : true,
+  "createdTimestamp" : 1788602219122,
+  "totp" : false,
+  "disableableCredentialTypes" : [ ],
+  "requiredActions" : [ ],
+  "notBefore" : 0,
+  "access" : {
+    "manageGroupMembership" : true,
+    "resetPassword" : true,
+    "view" : true,
+    "mapRoles" : true,
+    "impersonate" : true,
+    "manage" : true
+  }
+}

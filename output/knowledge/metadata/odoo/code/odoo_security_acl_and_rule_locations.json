@@ -1,0 +1,32 @@
+{
+  "knowledge_id": "odoo/code/odoo_security_acl_and_rule_locations",
+  "file_path": "odoo/code/odoo_security_acl_and_rule_locations.md",
+  "category_path": [
+    "odoo",
+    "code"
+  ],
+  "knowledge_type": "Other",
+  "keywords": [
+    "odoo",
+    "security",
+    "ir.model.access.csv",
+    "ir.rule",
+    "domain_force",
+    "base.group_user",
+    "search_read",
+    "json-rpc"
+  ],
+  "version": 1,
+  "usefulness_ratings": [
+    []
+  ],
+  "iterations_survived": 0,
+  "source_generations": [
+    "/mnt/c/Users/Ghana/Documents/research/anypoc/output/odoo/poc/odoo-anypoc-approval-export-idor/attempt_4"
+  ],
+  "source_success_flags": [
+    true
+  ],
+  "created_at": "2026-08-15T21:43:37.111831",
+  "updated_at": "2026-08-15T21:43:37.111831"
+}

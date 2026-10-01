@@ -1,0 +1,7 @@
+{
+  "name": "MartaCrossUserPolicy",
+  "description": "local validation marker",
+  "resources": ["814f1ce6-e4fd-4dae-8e68-d557cc92fb96"],
+  "scopes": ["Scope A"],
+  "users": ["marta"]
+}

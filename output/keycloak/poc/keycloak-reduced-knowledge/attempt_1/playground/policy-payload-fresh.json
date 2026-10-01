@@ -1,0 +1,14 @@
+{
+  "name": "cross-resource-policy-fresh-1788600442",
+  "description": "PoC fresh path resource plus victim",
+  "scopes": [
+    "Scope A"
+  ],
+  "users": [
+    "marta"
+  ],
+  "resources": [
+    "2d13cc35-c7ea-489b-a332-5e517f149664",
+    "05c947be-ecd7-402a-90e4-9fb674435809"
+  ]
+}

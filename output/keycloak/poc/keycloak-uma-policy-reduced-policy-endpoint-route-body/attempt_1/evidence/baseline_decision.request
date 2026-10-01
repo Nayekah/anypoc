@@ -1,0 +1,5 @@
+POST http://127.0.0.1:8080/realms/anypoc/protocol/openid-connect/token
+Authorization: Bearer <marta-token-redacted>
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=urn:ietf:params:oauth:grant-type:uma-ticket&client_id=resource-server-test&client_secret=<redacted>&response_mode=decision&audience=resource-server-test&permission=291c1f42-cb7a-46cd-be79-d6851533d448%23Scope A

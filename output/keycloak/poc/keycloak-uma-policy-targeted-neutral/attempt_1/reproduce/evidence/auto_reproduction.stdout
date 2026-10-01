@@ -1,0 +1,5 @@
+baseline=HTTP/1.1 403 Forbidden
+create=HTTP/1.1 200 OK
+policy_id=b5a1ed5e-75f5-477e-84fc-3f5272cacf08
+authorize=HTTP/1.1 200 OK
+evidence_dir=/home/playground/output/attempt_1/evidence/poc_run

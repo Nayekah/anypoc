@@ -1,0 +1,1 @@
+{"id":"b71e8b87-e24f-4ef1-a719-2ea678754b5b","name":"cross-resource-policy-fresh-1788600442","description":"PoC fresh path resource plus victim","type":"uma","scopes":["Scope A"],"logic":"POSITIVE","decisionStrategy":"UNANIMOUS","owner":"131f1619-cc65-455f-82cf-8e5d7dd6cf77","users":["marta"]}

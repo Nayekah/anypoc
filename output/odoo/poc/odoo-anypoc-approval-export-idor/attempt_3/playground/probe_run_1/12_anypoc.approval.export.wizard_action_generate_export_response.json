@@ -1,0 +1,1 @@
+{"jsonrpc": "2.0", "id": null, "result": {"type": "ir.actions.act_url", "url": "/web/content/?model=anypoc.approval.export.wizard&id=1&field=export_file&filename_field=export_filename&download=true", "target": "self"}}

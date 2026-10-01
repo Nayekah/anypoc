@@ -1,0 +1,8 @@
+session_login=employee@lab.local
+session_uid=6
+target_request_id=1
+wizard_id=3
+download_url=/web/content/?model=anypoc.approval.export.wizard&id=3&field=export_file&filename_field=export_filename&download=true
+request_name=ANYPOC Admin Approval
+owner_login=admin@lab.local
+secret_token=ANYPOC-APPROVAL-SECRET-9f4b3c
