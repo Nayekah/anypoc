@@ -1,0 +1,30 @@
+== Info:   Trying 127.0.0.1:8200...
+== Info: Connected to 127.0.0.1 (127.0.0.1) port 8200 (#0)
+=> Send header, 91 bytes (0x5b)
+0000: GET /v1/sys/health HTTP/1.1
+001d: Host: 127.0.0.1:8200
+0033: User-Agent: curl/7.81.0
+004c: Accept: */*
+0059: 
+== Info: Mark bundle as not supporting multiuse
+<= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+<= Recv header, 25 bytes (0x19)
+0000: Cache-Control: no-store
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 64 bytes (0x40)
+0000: Strict-Transport-Security: max-age=31536000; includeSubDomains
+<= Recv header, 37 bytes (0x25)
+0000: Date: Thu, 08 Oct 2026 12:12:52 GMT
+<= Recv header, 21 bytes (0x15)
+0000: Content-Length: 294
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 294 bytes (0x126)
+0000: {"initialized":true,"sealed":false,"standby":false,"performance_
+0040: standby":false,"replication_performance_mode":"disabled","replic
+0080: ation_dr_mode":"disabled","server_time_utc":1791461572,"version"
+00c0: :"2.5.1","cluster_name":"vault-cluster-9dbf86c9","cluster_id":"3
+0100: 5e95b5d-47d8-4024-f2fe-a8af4b5a26ec"}.
+== Info: Connection #0 to host 127.0.0.1 left intact

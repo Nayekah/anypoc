@@ -1,0 +1,16 @@
+{
+  "active": {
+    "title": "OPENBAO_OIDC_ACTIVE_20261008T122239Z_1251",
+    "marker": "OPENBAO_OIDC_ACTIVE_20261008T122239Z_1251",
+    "origin": "http://127.0.0.1:8200",
+    "scriptCount": 1,
+    "errors": []
+  },
+  "control": {
+    "title": "OpenBao",
+    "marker": null,
+    "origin": null,
+    "scriptCount": 0,
+    "errors": []
+  }
+}

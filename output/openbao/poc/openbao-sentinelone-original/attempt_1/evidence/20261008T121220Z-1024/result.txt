@@ -1,0 +1,4 @@
+target_version=2.5.1
+body_data_xss=XSS_MARKER
+PASS: attacker-controlled error_description was returned as executable HTML and executed in a same-origin DOM.
+Evidence: /home/playground/output/attempt_1/evidence/20261008T121220Z-1024

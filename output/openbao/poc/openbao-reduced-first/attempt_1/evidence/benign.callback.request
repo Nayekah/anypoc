@@ -1,0 +1,3 @@
+GET http://127.0.0.1:8200/v1/auth/oidc/oidc/callback?state=st_5ChKnwAGiIQz4wW0FB9Q&error_description=Local+identity+provider+denied+this+request.
+Host: 127.0.0.1:8200
+

@@ -1,0 +1,8 @@
+target_version=2.5.1
+benign_state=st_2Bi4fxcQj4Z5KxYyBWMA
+malicious_state=st_4wy00IiSTJHMW6qyCDzK
+benign_status=400
+malicious_status=400
+malicious_content_type=text/html
+payload_occurrences=1
+dom_oracle=body_data_xss:XSS_MARKER

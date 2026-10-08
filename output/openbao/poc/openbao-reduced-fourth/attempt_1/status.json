@@ -1,0 +1,25 @@
+{
+  "analysis": {
+    "status": "valid",
+    "timestamp": "2026-10-08T13:34:42.496345"
+  },
+  "generation": {
+    "status": "completed",
+    "timestamp": "2026-10-08T13:35:53.392109"
+  },
+  "evidence_check": {
+    "status": "passed",
+    "timestamp": "2026-10-08T13:35:54.307233"
+  },
+  "report": {
+    "status": "completed",
+    "timestamp": "2026-10-08T13:36:42.699877"
+  },
+  "bug_report_path": "/home/playground/input/bug_report.md",
+  "output_dir": "/home/playground/output/attempt_1",
+  "started_at": "2026-10-08T13:31:40.175041",
+  "completed_at": "2026-10-08T13:36:42.699926",
+  "attempt_number": 1,
+  "resumed_from": null,
+  "help_needed_reason": ""
+}

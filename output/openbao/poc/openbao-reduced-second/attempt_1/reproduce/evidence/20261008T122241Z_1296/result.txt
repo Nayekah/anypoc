@@ -1,0 +1,6 @@
+PASS
+active_state=st_Xgwx867ZNS0AiDTTeuU2
+control_state=st_F5yWXqERbWwVCnTgKcNd
+active_marker=OPENBAO_OIDC_ACTIVE_20261008T122241Z_1296
+control_marker=OPENBAO_OIDC_CONTROL_20261008T122241Z_1296
+oracle=/home/playground/output/attempt_1/reproduce/evidence/20261008T122241Z_1296/browser-execution.oracle.json

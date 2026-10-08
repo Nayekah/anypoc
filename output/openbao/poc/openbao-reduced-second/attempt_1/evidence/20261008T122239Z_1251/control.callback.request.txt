@@ -1,0 +1,3 @@
+GET http://127.0.0.1:8200/v1/auth/oidc/oidc/callback
+state=st_6I4GFlnHcHMEEaRKY6Xf
+error_description=OPENBAO_OIDC_CONTROL_20261008T122239Z_1251

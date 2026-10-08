@@ -1,0 +1,5 @@
+OpenBao OIDC direct-callback HTML injection PoC
+base_url=http://127.0.0.1:8200
+PASS: fresh unauthenticated OIDC state reaches a text/html callback that reflects attacker HTML unescaped.
+Malicious response: /home/playground/output/attempt_1/poc/../evidence/run.c6HsRF/malicious-callback.body
+Benign response: /home/playground/output/attempt_1/poc/../evidence/run.c6HsRF/benign-callback.body

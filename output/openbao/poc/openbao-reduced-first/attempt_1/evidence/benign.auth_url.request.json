@@ -1,0 +1,1 @@
+{"role":"lab-direct","redirect_uri":"http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback","client_nonce":"local-poc-benign-nonce"}

@@ -1,0 +1,38 @@
+OpenBao seeded OIDC direct-callback validation (local only)
+
+Setup/configuration:
+  POST http://127.0.0.1:8200/v1/auth/oidc/oidc/auth_url
+  Content-Type: application/json
+  {"role":"lab-direct","redirect_uri":"http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback","client_nonce":"control-nonce"}
+
+The response returned HTTP 200 with data.state (a fresh pending state) and an
+authorization URL. Using that state, the following normal callback endpoint
+was requested:
+
+  GET /v1/auth/oidc/oidc/callback?state=st_X6FQAgmYQY3opvBVPXpR&error_description=%3Cb%20data-poc%3D%22oidc-marker%22%3EOIDC_MARKER%3C%2Fb%3E
+
+Raw response evidence:
+
+  HTTP/1.1 400 Bad Request
+  Content-Type: text/html
+  ...
+          <div class="message-title">
+            Vault login failed.
+          </div>
+          <p class="message-body">
+            <b data-poc="oidc-marker">OIDC_MARKER</b>
+          </p>
+
+Benign control with a fresh state:
+
+  GET /v1/auth/oidc/oidc/callback?state=<fresh-state>&error_description=plain-control
+
+The response was also HTTP 400 / Content-Type: text/html and contained:
+
+          <p class="message-body">
+            plain-control
+          </p>
+
+The marker is therefore emitted as HTML markup in an HTML response, rather
+than as escaped text. No script, network listener, or destructive payload was
+used.

@@ -1,0 +1,24 @@
+== Info:   Trying 127.0.0.1:8200...
+== Info: Connected to 127.0.0.1 (127.0.0.1) port 8200 (#0)
+=> Send header, 166 bytes (0xa6)
+0000: GET /v1/auth/oidc/oidc/callback?state=st_mjOMKD3D4WYe8uQTgoOI&er
+0040: ror_description=BENIGN_MARKER HTTP/1.1
+0068: Host: 127.0.0.1:8200
+007e: User-Agent: curl/7.81.0
+0097: Accept: */*
+00a4: 
+== Info: Mark bundle as not supporting multiuse
+<= Recv header, 26 bytes (0x1a)
+0000: HTTP/1.1 400 Bad Request
+<= Recv header, 25 bytes (0x19)
+0000: Cache-Control: no-store
+<= Recv header, 25 bytes (0x19)
+0000: Content-Type: text/html
+<= Recv header, 64 bytes (0x40)
+0000: Strict-Transport-Security: max-age=31536000; includeSubDomains
+<= Recv header, 37 bytes (0x25)
+0000: Date: Thu, 08 Oct 2026 12:11:12 GMT
+<= Recv header, 28 bytes (0x1c)
+0000: Transfer-Encoding: chunked
+== Info: The requested URL returned error: 400
+== Info: Closing connection 0

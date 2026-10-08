@@ -1,0 +1,2 @@
+PASS: reflected OIDC callback XSS reproduced through the public API
+Evidence: /home/playground/output/attempt_1/evidence/20261008T122859Z-1058

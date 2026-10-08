@@ -1,0 +1,25 @@
+# Verdict
+
+Valid
+
+# Rejection Reason
+
+Other
+
+# Analysis Details
+
+The seeded flow is the `auth/oidc` mount, role `lab-direct`, configured for direct callbacks through the local OIDC issuer.
+
+Runtime reproduction:
+
+- Normal `auth_url` request generated a valid OIDC state.
+- Callback request supplied a benign `error_description`; the marker appeared in the HTML response.
+- A second callback supplied `</p><script>document.title='OPENBAO-LAB-XSS-7F'</script><p>`.
+- The service returned `400 text/html` without a CSP header, and the raw response contained the script verbatim.
+
+Root cause:
+
+- [`path_oidc.go:269-271`](/opt/openbao-source/builtin/credential/jwt/path_oidc.go:269) passes provider-controlled `error_description` to `loginFailedResponse`.
+- [`html_responses.go:327-357`](/opt/openbao-source/builtin/credential/jwt/html_responses.go:327) inserts the summary and detail into HTML using `fmt.Sprintf` without escaping.
+
+This is a reflected XSS in the OpenBao origin during a failed OIDC flow. Preserved evidence is available in [`callback-xss.response.raw`](/home/playground/output/attempt_1/playground/callback-xss.response.raw) and [`callback-xss.request.url`](/home/playground/output/attempt_1/playground/callback-xss.request.url).

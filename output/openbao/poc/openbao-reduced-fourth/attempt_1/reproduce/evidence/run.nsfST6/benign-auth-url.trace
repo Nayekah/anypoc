@@ -1,0 +1,40 @@
+== Info:   Trying 127.0.0.1:8200...
+== Info: Connected to 127.0.0.1 (127.0.0.1) port 8200 (#0)
+=> Send header, 158 bytes (0x9e)
+0000: POST /v1/auth/oidc/oidc/auth_url HTTP/1.1
+002b: Host: 127.0.0.1:8200
+0041: User-Agent: curl/7.81.0
+005a: Accept: */*
+0067: Content-Type: application/json
+0087: Content-Length: 127
+009c: 
+=> Send data, 127 bytes (0x7f)
+0000: {"role":"lab-direct","redirect_uri":"http://127.0.0.1:8200/ui/va
+0040: ult/auth/oidc/oidc/callback","client_nonce":"poc-benign-state"}
+== Info: Mark bundle as not supporting multiuse
+<= Recv header, 17 bytes (0x11)
+0000: HTTP/1.1 200 OK
+<= Recv header, 25 bytes (0x19)
+0000: Cache-Control: no-store
+<= Recv header, 32 bytes (0x20)
+0000: Content-Type: application/json
+<= Recv header, 64 bytes (0x40)
+0000: Strict-Transport-Security: max-age=31536000; includeSubDomains
+<= Recv header, 37 bytes (0x25)
+0000: Date: Thu, 08 Oct 2026 13:35:53 GMT
+<= Recv header, 21 bytes (0x15)
+0000: Content-Length: 582
+<= Recv header, 2 bytes (0x2)
+0000: 
+<= Recv data, 582 bytes (0x246)
+0000: {"request_id":"4ee8615d-1a5b-dcb7-3143-1c1e1afcef34","lease_id":
+0040: "","renewable":false,"lease_duration":0,"data":{"auth_url":"http
+0080: ://127.0.0.1:9001/authorize?client_id=anypoc-client\u0026code_ch
+00c0: allenge=_AmAKFbD9Nf0XcLkqNpQ1WLNpUPHmWLbyoLhnzIiJRA\u0026code_ch
+0100: allenge_method=S256\u0026nonce=n_tbKq0f9KRRmw7oLgSzAN\u0026redir
+0140: ect_uri=http%3A%2F%2F127.0.0.1%3A8200%2Fui%2Fvault%2Fauth%2Foidc
+0180: %2Foidc%2Fcallback\u0026response_type=code\u0026scope=openid\u00
+01c0: 26state=st_MCALqMdgf1pLX8z86RfX","poll_interval":"5","state":"st
+0200: _MCALqMdgf1pLX8z86RfX"},"wrap_info":null,"warnings":null,"auth":
+0240: null}.
+== Info: Connection #0 to host 127.0.0.1 left intact

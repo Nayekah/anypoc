@@ -1,0 +1,4 @@
+POST http://127.0.0.1:8200/v1/auth/oidc/oidc/auth_url
+role=lab-direct
+redirect_uri=http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback
+client_nonce=20261008T122216Z_1131_active_nonce

@@ -1,0 +1,3 @@
+GET http://127.0.0.1:8200/v1/auth/oidc/oidc/callback
+state=st_Xgwx867ZNS0AiDTTeuU2
+error_description=</p><script>document.title='OPENBAO_OIDC_ACTIVE_20261008T122241Z_1296';document.documentElement.setAttribute('data-poc-marker','OPENBAO_OIDC_ACTIVE_20261008T122241Z_1296');document.documentElement.setAttribute('data-poc-origin',location.origin)</script><p>

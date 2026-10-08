@@ -1,0 +1,3 @@
+PASS: fresh unauthenticated OIDC state reaches a text/html callback that reflects attacker HTML unescaped.
+Malicious response: /home/playground/output/attempt_1/reproduce/poc/../evidence/run.nsfST6/malicious-callback.body
+Benign response: /home/playground/output/attempt_1/reproduce/poc/../evidence/run.nsfST6/benign-callback.body

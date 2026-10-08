@@ -1,0 +1,10 @@
+{
+  "benign": {
+    "reflected_text": true,
+    "script_executed": false
+  },
+  "xss": {
+    "raw_script_present": true,
+    "script_executed": true
+  }
+}

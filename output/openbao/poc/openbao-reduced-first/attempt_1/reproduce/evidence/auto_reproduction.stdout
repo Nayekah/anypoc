@@ -1,0 +1,6 @@
+[poc] target: http://127.0.0.1:8200
+[poc] evidence: /home/playground/output/attempt_1/evidence
+[poc] benign control: reflected text, script_executed=false
+[poc] injection marker: raw script present, script_executed=true
+[poc] document.title=LOCAL_OIDC_XSS_POC_20261008
+[poc] PASS: direct callback failure page executed the harmless local marker
