@@ -1,6 +1,0 @@
-[ {
-  "id" : "c70d8312-7980-4e33-84f8-9b59659abf1d",
-  "type" : "password",
-  "createdDate" : 1788602215070,
-  "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
-} ]

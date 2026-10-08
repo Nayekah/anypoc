@@ -1,1 +1,0 @@
-http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/d65f752a-fe40-4023-929f-087876e2840d

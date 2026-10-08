@@ -1,5 +1,0 @@
-{
-  "status": "Completed",
-  "summary": "Executed the self-contained final PoC runner `run_poc.sh` and captured replay logs in the evidence directory.",
-  "next_actions": "None"
-}

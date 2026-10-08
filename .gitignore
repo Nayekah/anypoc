@@ -75,6 +75,7 @@ src/dashboard/dashboard/dist/
 
 # AnyPoC specific
 **/.dashboard_config.json
+**/.isolated_attempt_history/
 *.traj.html
 *.traj.json
 *.raw.md

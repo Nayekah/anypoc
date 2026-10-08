@@ -1,1 +1,0 @@
-{"base_url":"http://127.0.0.1:8080","realm":"anypoc","attacker":"marta","victim":"kolo","attacker_resource_id":"fd1f69f8-dec4-467f-9541-0b172738bdf5","victim_resource_id":"22294824-6815-4f79-ba8a-7d40872ffc97","created_policy_id":"1eb39065-b446-45be-863d-5fd13b81ffd3","before_status":403,"create_status":200,"after_status":200,"outcome":"reproduced"}

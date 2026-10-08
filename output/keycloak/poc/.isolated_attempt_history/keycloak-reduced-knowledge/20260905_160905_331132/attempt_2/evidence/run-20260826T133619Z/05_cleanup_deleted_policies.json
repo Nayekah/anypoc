@@ -1,8 +1,0 @@
-[
-  {
-    "body": "",
-    "policy_id": "d35ad805-21a9-440f-a743-9aad64fba3be",
-    "status": 204,
-    "url": "http://127.0.0.1:8080/realms/anypoc/authz/protection/uma-policy/d35ad805-21a9-440f-a743-9aad64fba3be"
-  }
-]

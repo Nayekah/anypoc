@@ -1,3 +1,0 @@
-Observed differences from the provided artifact set:
-- The provided /poc directory contained only generation_summary.{md,json}; there was no runnable PoC script to execute verbatim.
-- The pre-seeded victim resource was already grantable to marta from earlier lab state, so this reproduction used fresh per-run resources to restore a clean baseline.
